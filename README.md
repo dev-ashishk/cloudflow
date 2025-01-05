@@ -73,7 +73,7 @@ Getting started with CloudFlow is super simple! Just follow these steps:
 
 *   Clone the CloudFlow repository to your local machine:
 
-git clone https://github.com/yourusername/cloudflow.git
+git clone https://github.com/dev-ashishk/cloudflow.git
         
 
 *   Navigate to the project directory:
