@@ -1,7 +1,7 @@
 ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 
 CloudFlow - The Ultimate Cloud Setup Companion
-![Logo](./logo.svg)
+
 Welcome to CloudFlow 🚀
 =======================
 
