@@ -2,7 +2,7 @@
 
 CloudFlow - The Ultimate Cloud Setup Companion
 
-![img](./assets/logo.png)
+![img](./assets/logo-black.png)
 
 Welcome to CloudFlow 🚀
 =======================
