@@ -18,6 +18,23 @@
 
 echo "------------ Welcome to the GCP Setup ----------------"
 
+# Check if gcloud is installed
+if ! command -v gcloud &> /dev/null; then
+  echo "Error: gcloud is not installed. Please install the Google Cloud CLI before proceeding."
+  exit 1
+fi
+
+# Check if the user is logged in
+if ! gcloud auth list --filter=status:ACTIVE --format="value(account)" | grep -q .; then
+  echo "Error: No active Google Cloud account found. Please log in using 'gcloud auth login' and try again."
+  exit 1
+fi
+
+# Check if the project is set (optional)
+if [ -z "$(gcloud config get-value project 2>/dev/null)" ]; then
+  echo "Warning: No project is currently set. You'll be prompted to enter the project ID."
+fi
+
 read -p "Enter GCP project ID: " PROJECT_ID
 read -p "Enter region (e.g., us-central1): " REGION
 

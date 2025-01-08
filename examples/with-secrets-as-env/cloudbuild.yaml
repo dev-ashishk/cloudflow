@@ -1,0 +1,46 @@
+steps:
+  # Step 1: Docker build step
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
+      - '-f'
+      - '${_DOCKERFILE_RELATIVE_PATH}'
+      - '.'
+
+  # Step 2: Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
+
+  # Step 3: Deploy to Cloud Run and inject secrets as env into runtime
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY_NAME}/${_IMAGE_NAME}:${SHORT_SHA}'
+      - '--region=${_REGION}'
+      - '--platform=managed'
+      - '--labels=${_LABELS}'
+      - '--set-secrets=MONGODB_URI=MONGODB_URI:latest'
+      - '--set-secrets=NODE_ENV=NODE_ENV:latest'
+      - '--set-secrets=WEBHOOK_SECRET=WEBHOOK_SECRET:latest'
+
+
+# Timeout for the build process
+timeout: 1500s
+
+substitutions:
+  _IMAGE_NAME: '[Enter here Image Name]'
+  _REPOSITORY_NAME: '[Enter here Repository Name]'
+  _DOCKERFILE_RELATIVE_PATH: './deployment/Dockerfile'
+  _SERVICE_NAME: '[Enter here service name]'
+  _LABELS: 'env=production'
+  _REGION: 'us-central1'
+
+
+options:
+  logging: CLOUD_LOGGING_ONLY
