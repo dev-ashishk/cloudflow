@@ -44,8 +44,10 @@ echo "2. Create Secrets"
 echo "3. Create Artifact Registry"
 echo "4. Create Build Trigger"
 echo "5. Check IAM Roles"
-echo "6. All the above"
-echo "7. Exit"
+echo "6. Setup VPC"
+echo "7. Setup Kubernetes Environment"
+echo "8. All the above"
+echo "9. Exit"
 
 read -p "Enter your choice: " choice
 
@@ -67,14 +69,22 @@ case $choice in
     ./scripts/check-roles.sh "$PROJECT_ID"
     ;;
   6)
+    ./scripts/setup-vpc.sh "$PROJECT_ID"
+    ;;
+  7)
+    ./scripts/setup-kubernetes-environment.sh "$PROJECT_ID"
+    ;;
+  8)
     # Run all tasks with the common information
     ./scripts/enable-apis.sh "$PROJECT_ID"
     ./scripts/create-secrets.sh "$PROJECT_ID"
     ./scripts/create-artifacts-repo.sh "$PROJECT_ID" "$REGION"
     ./scripts/create-trigger.sh "$PROJECT_ID"
     ./scripts/check-roles.sh "$PROJECT_ID"
+    ./scripts/setup-vpc.sh "$PROJECT_ID"
+    ./scripts/setup-kubernetes-environment.sh "$PROJECT_ID"
     ;;
-  7)
+  9)
     echo "Exiting setup."
     exit 0
     ;;
