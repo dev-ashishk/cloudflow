@@ -1,4 +1,4 @@
-![img](../assets/logo-black.png)
+![img](../assets/cloudflow.png)
 CloudFlow Setup Manual
 ======================
 

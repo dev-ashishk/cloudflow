@@ -1,4 +1,4 @@
-![img](../../assets/logo-black.png)
+![img](../../assets/cloudflow.png)
 
 Cloud Build Pipeline for Docker, Cloud Run, and Secrets Management
 ==================================================================

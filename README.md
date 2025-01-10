@@ -1,8 +1,9 @@
+![img](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=765162&theme=light)
 ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 
 CloudFlow - The Ultimate Cloud Setup Companion
 
-![img](./assets/logo-black.png)
+![img](./assets/cloudflow.png)
 
 Welcome to CloudFlow 🚀
 =======================
